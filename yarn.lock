@@ -181,12 +181,50 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@mantine/dates@npm:^7.11.1":
+  version: 7.11.1
+  resolution: "@mantine/dates@npm:7.11.1"
+  dependencies:
+    clsx: "npm:^2.1.1"
+  peerDependencies:
+    "@mantine/core": 7.11.1
+    "@mantine/hooks": 7.11.1
+    dayjs: ">=1.0.0"
+    react: ^18.2.0
+    react-dom: ^18.2.0
+  checksum: 10c0/ad3a36f016822ae27d1fdb0bb3e7a7c6641fa2ca27ff2c86c88d0d54d2ff460a759584de9498558fd9207affa0eb99057d0976e31b810ea04587b70dc5a25382
+  languageName: node
+  linkType: hard
+
 "@mantine/hooks@npm:7.11.1":
   version: 7.11.1
   resolution: "@mantine/hooks@npm:7.11.1"
   peerDependencies:
     react: ^18.2.0
   checksum: 10c0/e21ed0b67f160d2500819b515bd61f741220019d780afefe59bdab69de0cf6db839920b5673f4dfe17fbd2598d8ed14b5deea11ce97af9bf06b42ce433b43226
+  languageName: node
+  linkType: hard
+
+"@mantine/nprogress@npm:^7.11.1":
+  version: 7.11.1
+  resolution: "@mantine/nprogress@npm:7.11.1"
+  dependencies:
+    "@mantine/store": "npm:7.11.1"
+  peerDependencies:
+    "@mantine/core": 7.11.1
+    "@mantine/hooks": 7.11.1
+    react: ^18.2.0
+    react-dom: ^18.2.0
+  checksum: 10c0/38059a10107914830d3306db9686fbfc2af9c8e993fbf8b5904fda6b730f57ad5e72940c77445b4a22f9224c86d043cbd56dc6c8d330f1347c7a52391276ae57
+  languageName: node
+  linkType: hard
+
+"@mantine/store@npm:7.11.1":
+  version: 7.11.1
+  resolution: "@mantine/store@npm:7.11.1"
+  peerDependencies:
+    react: ^18.2.0
+  checksum: 10c0/3e96808b49fd599db1e7081c09278c1fffbe7f41e85350edeac0c04e1cecb1847b03b7910977ebf5bae2a19c26c0e18af672a6e7a6bb33a428299dbfdb64cb96
   languageName: node
   linkType: hard
 
@@ -341,6 +379,61 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@tabler/icons-react@npm:^3.9.0":
+  version: 3.9.0
+  resolution: "@tabler/icons-react@npm:3.9.0"
+  dependencies:
+    "@tabler/icons": "npm:3.9.0"
+  peerDependencies:
+    react: ">= 16"
+  checksum: 10c0/89fe826ed972e99ce8fa4d9390b8bc01a8cb1f1d662c34cc97977d01a9c7b7e51e755bfcceef212cb126441775dc66dcd08e048f9af7bd6fdf70c0a4ed748cf4
+  languageName: node
+  linkType: hard
+
+"@tabler/icons@npm:3.9.0":
+  version: 3.9.0
+  resolution: "@tabler/icons@npm:3.9.0"
+  checksum: 10c0/7e5497442fc70aa264e723d074c85f7a4cc5622318105bada0a7ec392d2c1d0b376cb21a8ed06cc9e696f8a8d29e16c547980fb4a1edddb66b47284be885226a
+  languageName: node
+  linkType: hard
+
+"@tanstack/query-core@npm:5.50.1":
+  version: 5.50.1
+  resolution: "@tanstack/query-core@npm:5.50.1"
+  checksum: 10c0/4690750e70638fbfbcb686262f129c45e06314126bc651701f9cd57a77bd05cb9dad30b68cad960c35c790982750c294c9c340d25cb8a9a0916576d2e27569c0
+  languageName: node
+  linkType: hard
+
+"@tanstack/query-devtools@npm:5.50.1":
+  version: 5.50.1
+  resolution: "@tanstack/query-devtools@npm:5.50.1"
+  checksum: 10c0/ab88d8de5626ea140fda8f0e28394cadfa392105feafdf2fa09c09cfc5ff875c2b141ce2524123fc54a39d25ea9b5091658db785b337ae7a7a3a785469e3d647
+  languageName: node
+  linkType: hard
+
+"@tanstack/react-query-devtools@npm:^5.50.1":
+  version: 5.50.1
+  resolution: "@tanstack/react-query-devtools@npm:5.50.1"
+  dependencies:
+    "@tanstack/query-devtools": "npm:5.50.1"
+  peerDependencies:
+    "@tanstack/react-query": ^5.50.1
+    react: ^18 || ^19
+  checksum: 10c0/06d3177c0f872a58c095b4b97043555ac2bd0829dfd9572e376ae3279ed246c9546cef6f86a7786af28d1b4abf8573fa52e37b8b77465716791d9c7aee1c2122
+  languageName: node
+  linkType: hard
+
+"@tanstack/react-query@npm:^5.50.1":
+  version: 5.50.1
+  resolution: "@tanstack/react-query@npm:5.50.1"
+  dependencies:
+    "@tanstack/query-core": "npm:5.50.1"
+  peerDependencies:
+    react: ^18.0.0
+  checksum: 10c0/ccf33245bc4f83c20b93a629e64edd9976a4d397ee51ee442326955a387345ff2b2a3813955faef6d08fde732eebb40557944df8335d50838094b703e79f35f9
+  languageName: node
+  linkType: hard
+
 "@types/json5@npm:^0.0.29":
   version: 0.0.29
   resolution: "@types/json5@npm:0.0.29"
@@ -361,6 +454,13 @@ __metadata:
   version: 15.7.5
   resolution: "@types/prop-types@npm:15.7.5"
   checksum: 10c0/648aae41423821c61c83823ae36116c8d0f68258f8b609bdbc257752dcd616438d6343d554262aa9a7edaee5a19aca2e028a74fa2d0f40fffaf2816bc7056857
+  languageName: node
+  linkType: hard
+
+"@types/prop-types@npm:^15":
+  version: 15.7.12
+  resolution: "@types/prop-types@npm:15.7.12"
+  checksum: 10c0/1babcc7db6a1177779f8fde0ccc78d64d459906e6ef69a4ed4dd6339c920c2e05b074ee5a92120fe4e9d9f1a01c952f843ebd550bee2332fc2ef81d1706878f8
   languageName: node
   linkType: hard
 
@@ -884,6 +984,13 @@ __metadata:
   version: 1.0.8
   resolution: "damerau-levenshtein@npm:1.0.8"
   checksum: 10c0/4c2647e0f42acaee7d068756c1d396e296c3556f9c8314bac1ac63ffb236217ef0e7e58602b18bb2173deec7ec8e0cac8e27cccf8f5526666b4ff11a13ad54a3
+  languageName: node
+  linkType: hard
+
+"dayjs@npm:^1.11.11":
+  version: 1.11.11
+  resolution: "dayjs@npm:1.11.11"
+  checksum: 10c0/0131d10516b9945f05a57e13f4af49a6814de5573a494824e103131a3bbe4cc470b1aefe8e17e51f9a478a22cd116084be1ee5725cedb66ec4c3f9091202dc4b
   languageName: node
   linkType: hard
 
@@ -2453,27 +2560,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mantine-minimal-next-template@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "mantine-minimal-next-template@workspace:."
-  dependencies:
-    "@mantine/core": "npm:7.11.1"
-    "@mantine/hooks": "npm:7.11.1"
-    "@types/node": "npm:20.14.8"
-    "@types/react": "npm:18.3.3"
-    "@types/react-dom": "npm:18.3.0"
-    eslint: "npm:8.57.0"
-    eslint-config-next: "npm:14.2.4"
-    next: "npm:14.2.4"
-    postcss: "npm:^8.4.38"
-    postcss-preset-mantine: "npm:1.15.0"
-    postcss-simple-vars: "npm:^7.0.1"
-    react: "npm:18.3.1"
-    react-dom: "npm:18.3.1"
-    typescript: "npm:5.5.2"
-  languageName: unknown
-  linkType: soft
-
 "merge2@npm:^1.3.0, merge2@npm:^1.4.1":
   version: 1.4.1
   resolution: "merge2@npm:1.4.1"
@@ -2561,6 +2647,37 @@ __metadata:
   checksum: 10c0/f5f9a7974bfb28a91afafa254b197f0f22c684d4a1731763dda960d2c8e375b36c7d690e0d9dc8fba774c537af14a7e979129bca23d88d052fbeb9466955e447
   languageName: node
   linkType: hard
+
+"next-crypto-calculation@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "next-crypto-calculation@workspace:."
+  dependencies:
+    "@mantine/core": "npm:7.11.1"
+    "@mantine/dates": "npm:^7.11.1"
+    "@mantine/hooks": "npm:7.11.1"
+    "@mantine/nprogress": "npm:^7.11.1"
+    "@tabler/icons-react": "npm:^3.9.0"
+    "@tanstack/react-query": "npm:^5.50.1"
+    "@tanstack/react-query-devtools": "npm:^5.50.1"
+    "@types/node": "npm:20.14.8"
+    "@types/prop-types": "npm:^15"
+    "@types/react": "npm:18.3.3"
+    "@types/react-dom": "npm:18.3.0"
+    clsx: "npm:^2.1.1"
+    dayjs: "npm:^1.11.11"
+    eslint: "npm:8.57.0"
+    eslint-config-next: "npm:14.2.4"
+    next: "npm:14.2.4"
+    path-to-regexp: "npm:^6.2.1"
+    postcss: "npm:^8.4.38"
+    postcss-preset-mantine: "npm:1.15.0"
+    postcss-simple-vars: "npm:^7.0.1"
+    prop-types: "npm:^15.8.1"
+    react: "npm:18.3.1"
+    react-dom: "npm:18.3.1"
+    typescript: "npm:5.5.2"
+  languageName: unknown
+  linkType: soft
 
 "next@npm:14.2.4":
   version: 14.2.4
@@ -2863,6 +2980,13 @@ __metadata:
     lru-cache: "npm:^9.1.1 || ^10.0.0"
     minipass: "npm:^5.0.0 || ^6.0.2 || ^7.0.0"
   checksum: 10c0/e5dc78a7348d25eec61ab166317e9e9c7b46818aa2c2b9006c507a6ff48c672d011292d9662527213e558f5652ce0afcc788663a061d8b59ab495681840c0c1e
+  languageName: node
+  linkType: hard
+
+"path-to-regexp@npm:^6.2.1":
+  version: 6.2.2
+  resolution: "path-to-regexp@npm:6.2.2"
+  checksum: 10c0/4b60852d3501fd05ca9dd08c70033d73844e5eca14e41f499f069afa8364f780f15c5098002f93bd42af8b3514de62ac6e82a53b5662de881d2b08c9ef21ea6b
   languageName: node
   linkType: hard
 

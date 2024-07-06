@@ -1,0 +1,90 @@
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { AppProps } from "next/app";
+import React from "react";
+import { globalRoutes } from "./routes";
+import matchPath from "~/core/utils/matchPath";
+
+interface LayoutContextProps {
+  exact: boolean;
+  path: string;
+  layout: React.Component;
+}
+
+/**
+ * Query Client
+ */
+export const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 10000,
+    },
+  },
+});
+
+/**
+ *
+ * @param props
+ * @returns
+ */
+function WrapperReactQuery(props: any) {
+  const { children } = props;
+
+  return (
+    <QueryClientProvider client={queryClient}>
+      {children}
+      <ReactQueryDevtools initialIsOpen />
+    </QueryClientProvider>
+  );
+}
+
+/**
+ * Default Layout Context
+ */
+export const DefaultLayoutContext = React.createContext<
+  LayoutContextProps & any
+>({
+  exact: undefined,
+  path: undefined,
+  layout: undefined,
+});
+
+/**
+ *
+ * @param props
+ * @returns
+ */
+export default function siteLayout(props: AppProps) {
+  const { Component, pageProps, router } = props;
+  const { route } = router;
+
+  const routes: any[] = globalRoutes;
+
+  for (let i = 0; i < routes.length; i += 1) {
+    const curRoute = routes[i];
+    const { exact, path, layout: PageLayout, ...layoutProps } = curRoute;
+    const match = matchPath(route, { path, exact });
+
+    if (match) {
+      return (
+        <DefaultLayoutContext.Provider value={curRoute}>
+          <WrapperReactQuery>
+            {PageLayout ? (
+              <PageLayout {...props} layoutProps={layoutProps} />
+            ) : (
+              <Component {...pageProps} key={router.route} />
+            )}
+          </WrapperReactQuery>
+        </DefaultLayoutContext.Provider>
+      );
+    }
+  }
+
+  return (
+    <DefaultLayoutContext.Provider value={pageProps}>
+      <WrapperReactQuery>
+        <Component {...pageProps} key={router.route} />
+      </WrapperReactQuery>
+    </DefaultLayoutContext.Provider>
+  );
+}

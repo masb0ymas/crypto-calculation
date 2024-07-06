@@ -78,8 +78,15 @@ export default function HomePage() {
 
     const chainETH = aaveJson.data.find((x) => x.chain === choiceChain);
 
-    // @ts-expect-error
-    marketLists = List.transform(chainETH?.markets, "name", "asset");
+    marketLists = List.transform(
+      // @ts-expect-error
+      chainETH?.markets,
+      "name",
+      "asset",
+      (_values, item, _index) => {
+        return `${_.toUpper(item.asset)} - ${item.name}`;
+      }
+    );
 
     if (!_.isEmpty(marketLists)) {
       const supplyAssets = chainETH?.markets.find(
@@ -108,7 +115,7 @@ export default function HomePage() {
       </div>
 
       <Grid columns={24} mt={20}>
-        <Grid.Col span={{ base: 12 }}>
+        <Grid.Col span={{ base: 24, xs: 24, sm: 12, md: 12 }}>
           <Stack>
             <Paper p={20} radius="md" shadow="md" withBorder>
               <Stack gap={10}>
@@ -243,7 +250,7 @@ export default function HomePage() {
           </Stack>
         </Grid.Col>
 
-        <Grid.Col span={{ base: 12 }}>
+        <Grid.Col span={{ base: 24, xs: 24, sm: 12, md: 12 }}>
           <Paper p={20} radius="md" shadow="md" withBorder>
             <Stack>
               <Title order={5}>

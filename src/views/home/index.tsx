@@ -1,5 +1,16 @@
-import { Grid, NumberInput, Paper, Stack, Text, Title } from "@mantine/core";
-import TableAsset from "./partials/tableAsset";
+import {
+  Button,
+  Divider,
+  Grid,
+  NumberInput,
+  Paper,
+  Select,
+  SimpleGrid,
+  Stack,
+  Text,
+  Title,
+} from "@mantine/core";
+import TableAsset from "./partials/TableAsset";
 
 export default function HomePage() {
   const supplied = [
@@ -47,11 +58,43 @@ export default function HomePage() {
         </Text>
       </div>
 
-      <Grid columns={24}>
+      <Grid columns={24} mt={20}>
         <Grid.Col span={{ base: 12 }}>
-          <Paper p={20} radius="md" shadow="md" withBorder>
-            <NumberInput label="Amount" />
-          </Paper>
+          <Stack>
+            <Paper p={20} radius="md" shadow="md" withBorder>
+              <Title order={5}>Supply</Title>
+
+              <Divider variant="dashed" my={10} />
+
+              <SimpleGrid cols={2}>
+                <Select label="DeFi Platform" />
+                <Select label="Chain" />
+              </SimpleGrid>
+
+              <Select label="Asset" mt={5} />
+
+              <NumberInput label="Amount" suffix={` ETH`} mt={5} />
+            </Paper>
+
+            <Paper p={20} radius="md" shadow="md" withBorder>
+              <Title order={5}>Borrow</Title>
+
+              <Divider variant="dashed" my={10} />
+
+              <SimpleGrid cols={2}>
+                <Select label="DeFi Platform" />
+                <Select label="Chain" />
+              </SimpleGrid>
+
+              <Select label="Asset" mt={5} />
+
+              <NumberInput label="Amount" suffix={` ETH`} mt={5} />
+            </Paper>
+
+            <Button radius="md" size="md" fullWidth>
+              Calculate
+            </Button>
+          </Stack>
         </Grid.Col>
 
         <Grid.Col span={{ base: 12 }}>
@@ -64,7 +107,7 @@ export default function HomePage() {
               <TableAsset label="Supplied" data={supplied} />
               <TableAsset label="Borrowed" data={borrowed} />
 
-              <Stack gap={5}>
+              <Stack gap={5} mt={20}>
                 <Title order={5}>
                   <u>Formula:</u>
                 </Title>

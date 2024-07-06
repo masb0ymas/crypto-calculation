@@ -10,14 +10,13 @@ import Head from "next/head";
 import env from "~/config/env";
 import MyRouterTransition from "~/core/components/MyRouterTransition";
 import { theme } from "~/core/styles/theme";
-import { capitalizeFirstLetter } from "~/core/utils/string";
 import siteLayout from "~/layouts";
 
 const colorSchemeManager = localStorageColorSchemeManager({
   key: `${env.APP_PREFIX}_colorScheme`,
 });
 
-const title = capitalizeFirstLetter(env.APP_NAME);
+const title = env.APP_NAME;
 const description = `${title} - Calculation for Web3 DeFi`;
 
 const metaURL = env.APP_SITE_URL;

@@ -24,17 +24,15 @@ export default function RootContainer(props: IProps) {
       <div>
         <Header />
 
-        <div style={{ display: "flex" }}>
-          <Container size="xl" fluid py={20}>
-            {/* loading component */}
-            {isLayoutLoading && <Loader />}
+        <Container size="md" py={20}>
+          {/* loading component */}
+          {isLayoutLoading && <Loader />}
 
-            {/* render content */}
-            <Component {...props} />
+          {/* render content */}
+          <Component {...props} />
 
-            <MyAffix />
-          </Container>
-        </div>
+          <MyAffix />
+        </Container>
 
         <Footer />
       </div>

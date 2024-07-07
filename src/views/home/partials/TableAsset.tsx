@@ -1,10 +1,16 @@
-import { Divider, Grid, SimpleGrid, Stack, Text } from "@mantine/core";
-import React from "react";
+import { Divider, Grid, SimpleGrid, Space, Stack, Text } from "@mantine/core";
+import { useLocalStorage } from "@mantine/hooks";
+import _ from "lodash";
+import env from "~/config/env";
+import EmptyRecord from "~/core/components/Empty/EmptyRecord";
 
 interface RowTableAssetProps {
+  defi: string;
+  market: string;
   asset: string;
-  amount: number;
+  liquid_threshold: number;
   price: number;
+  amount: number;
 }
 
 interface TableAssetProps {
@@ -12,10 +18,19 @@ interface TableAssetProps {
   data: RowTableAssetProps[];
 }
 
+export const defaultForm = {
+  defi: "",
+  market: "",
+  asset: "",
+  liquid_threshold: 0,
+  price: 0,
+  amount: 0,
+};
+
 /**
- * 
- * @param props 
- * @returns 
+ *
+ * @param props
+ * @returns
  */
 function RowTableAsset(props: RowTableAssetProps) {
   const { asset, amount, price } = props;
@@ -43,12 +58,32 @@ function RowTableAsset(props: RowTableAssetProps) {
 }
 
 /**
- * 
- * @param props 
- * @returns 
+ *
+ * @param props
+ * @returns
  */
 export default function TableAsset(props: TableAssetProps) {
   const { label, data } = props;
+
+  console.log({ data });
+
+  function renderAsset() {
+    if (!_.isEmpty(data)) {
+      return data.map((item) => {
+        return <RowTableAsset {...item} key={item.asset} />;
+      });
+    }
+
+    return (
+      <Grid.Col>
+        <Space mt={10} />
+
+        <EmptyRecord />
+
+        <Space mt={10} />
+      </Grid.Col>
+    );
+  }
 
   return (
     <Stack gap={10}>
@@ -69,16 +104,7 @@ export default function TableAsset(props: TableAssetProps) {
       <Divider variant="dashed" />
 
       <Grid columns={12} justify="flex-end" align="stretch">
-        {data.map((item) => {
-          return (
-            <RowTableAsset
-              asset={item.asset}
-              amount={item.amount}
-              price={item.price}
-              key={item.asset}
-            />
-          );
-        })}
+        {renderAsset()}
       </Grid>
     </Stack>
   );

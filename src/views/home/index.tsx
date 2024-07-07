@@ -10,19 +10,17 @@ import {
   Text,
   Title,
 } from "@mantine/core";
-import TableAsset from "./partials/TableAsset";
-import { optDeFiPlatform } from "~/core/constants/defi";
-import aaveJson from "~/data/json/aave.json";
-import { useState } from "react";
-import List from "~/core/utils/list";
+import { useLocalStorage } from "@mantine/hooks";
+import { IconApps, IconCoinBitcoin, IconLink } from "@tabler/icons-react";
 import _ from "lodash";
-import {
-  Icon123,
-  IconApps,
-  IconBuildingBank,
-  IconCoinBitcoin,
-  IconLink,
-} from "@tabler/icons-react";
+import { useState } from "react";
+import env from "~/config/env";
+import { optDeFiPlatform } from "~/core/constants/defi";
+import List from "~/core/utils/list";
+import { validateNumber } from "~/core/utils/number";
+import aaveJson from "~/data/json/aave.json";
+import Formula from "./partials/Formula";
+import TableAsset, { defaultForm } from "./partials/TableAsset";
 
 export default function HomePage() {
   const [choiceDeFi, setChoiceDeFi] = useState<string | null>("");
@@ -30,41 +28,23 @@ export default function HomePage() {
   const [choiceSupplyAsset, setChoiceSupplyAsset] = useState<string | null>("");
   const [choiceBorrowAsset, setChoiceBorrowAsset] = useState<string | null>("");
 
-  const supplied = [
-    {
-      asset: "ETH",
-      amount: 0.7677,
-      price: 3002,
-    },
-  ];
+  const [amountSupply, setAmountSupply] = useState<string | number>("");
+  const [amountBorrow, setAmountBorrow] = useState<string | number>("");
 
-  const borrowed = [
-    {
-      asset: "USDC",
-      amount: 1258,
-      price: 1,
-    },
-  ];
+  const keyStorageSupply = `${env.APP_PREFIX}_supply`;
+  const keyStorageBorrow = `${env.APP_PREFIX}_borrow`;
 
-  const colleteral = supplied.reduce((acc, curValue) => {
-    const usdValue = Number(curValue.price) * Number(curValue.amount);
+  // save to local storage
+  const [formSupply, setFormSupply] = useLocalStorage<(typeof defaultForm)[]>({
+    key: keyStorageSupply,
+    defaultValue: [],
+  });
 
-    acc += usdValue;
-
-    return acc;
-  }, 0);
-
-  const total_borrow = borrowed.reduce((acc, curValue) => {
-    const usdValue = Number(curValue.price) * Number(curValue.amount);
-
-    acc += usdValue;
-
-    return acc;
-  }, 0);
-
-  const health_factor_dirty = (colleteral * 0.85) / total_borrow;
-  const health_factor =
-    Math.round((health_factor_dirty + Number.EPSILON) * 100) / 100;
+  // save to local storage
+  const [formBorrow, setFormBorrow] = useLocalStorage<(typeof defaultForm)[]>({
+    key: keyStorageBorrow,
+    defaultValue: [],
+  });
 
   let chainLists: any[] = [];
   let marketLists: any[] = [];
@@ -105,6 +85,19 @@ export default function HomePage() {
     }
   }
 
+  function addSupplies() {
+    formSupply.push({
+      defi: String(choiceDeFi),
+      market: String(choiceChain),
+      asset: String(choiceSupplyAsset),
+      liquid_threshold: supplyLT,
+      price: 0,
+      amount: Number(amountSupply),
+    });
+
+    setFormSupply(formSupply);
+  }
+
   return (
     <Stack>
       <div style={{ textAlign: "center", alignItems: "center" }}>
@@ -131,15 +124,17 @@ export default function HomePage() {
                     onChange={setChoiceDeFi}
                     leftSection={<IconApps size={20} stroke={1.5} />}
                     checkIconPosition="right"
+                    placeholder="Choice DeFi"
                     nothingFoundMessage="Nothing found..."
                   />
                   <Select
-                    label="Chain"
+                    label="Market/Chain"
                     data={chainLists}
                     value={choiceChain}
                     onChange={setChoiceChain}
                     leftSection={<IconLink size={20} stroke={1.5} />}
                     checkIconPosition="right"
+                    placeholder="Choice Market"
                     nothingFoundMessage="Nothing found..."
                   />
                 </SimpleGrid>
@@ -153,6 +148,7 @@ export default function HomePage() {
                       onChange={setChoiceSupplyAsset}
                       leftSection={<IconCoinBitcoin size={20} stroke={1.5} />}
                       checkIconPosition="right"
+                      placeholder="Choice Asset"
                       nothingFoundMessage="Nothing found..."
                     />
                   </Grid.Col>
@@ -174,10 +170,20 @@ export default function HomePage() {
                   suffix={` ${supplyToken}`}
                   thousandSeparator=","
                   allowNegative={false}
+                  placeholder="Input asset amount"
+                  onChange={setAmountSupply}
                   disabled={!choiceSupplyAsset}
                 />
 
-                <Button radius="md" size="sm" variant="light" fullWidth>
+                <Button
+                  radius="md"
+                  size="sm"
+                  variant="light"
+                  fullWidth
+                  type="button"
+                  disabled={validateNumber(amountSupply) <= 0}
+                  onClick={() => addSupplies()}
+                >
                   Add Supply
                 </Button>
               </Stack>
@@ -197,15 +203,17 @@ export default function HomePage() {
                     onChange={setChoiceDeFi}
                     leftSection={<IconApps size={20} stroke={1.5} />}
                     checkIconPosition="right"
+                    placeholder="Choice DeFi"
                     nothingFoundMessage="Nothing found..."
                   />
                   <Select
-                    label="Chain"
+                    label="Marktet/Chain"
                     data={chainLists}
                     value={choiceChain}
                     onChange={setChoiceChain}
                     leftSection={<IconLink size={20} stroke={1.5} />}
                     checkIconPosition="right"
+                    placeholder="Choice Market"
                     nothingFoundMessage="Nothing found..."
                   />
                 </SimpleGrid>
@@ -219,6 +227,7 @@ export default function HomePage() {
                       onChange={setChoiceBorrowAsset}
                       leftSection={<IconCoinBitcoin size={20} stroke={1.5} />}
                       checkIconPosition="right"
+                      placeholder="Choice Asset"
                       nothingFoundMessage="Nothing found..."
                     />
                   </Grid.Col>
@@ -239,6 +248,7 @@ export default function HomePage() {
                   suffix={` ${borrowToken}`}
                   thousandSeparator=","
                   allowNegative={false}
+                  placeholder="Input asset amount"
                   disabled={!choiceBorrowAsset}
                 />
 
@@ -257,32 +267,14 @@ export default function HomePage() {
                 <u>Result:</u>
               </Title>
 
-              <TableAsset label="Supplied" data={supplied} />
-              <TableAsset label="Borrowed" data={borrowed} />
+              <TableAsset label="Supplies" data={formSupply} />
+              <TableAsset label="Borrowed" data={formBorrow} />
 
-              <Button radius="md" size="sm" fullWidth>
+              <Button radius="md" size="sm" fullWidth disabled>
                 Calculate
               </Button>
 
-              <Stack gap={5} mt={20}>
-                <Title order={5}>
-                  <u>Formula:</u>
-                </Title>
-                <Text fw={600}>Health Factor (HF):</Text>
-                <Text>HF = (Colleteral * Liquid Threshold) / Total Borrow</Text>
-
-                <Text>
-                  {`HF = (${colleteral} * 0.85) / ${total_borrow}`} ={" "}
-                  <Text component="span" fw={600}>
-                    <u>{health_factor}</u>
-                  </Text>
-                </Text>
-              </Stack>
-
-              <Stack gap={5}>
-                <Text fw={600}>Aset Liquidation Price (LP):</Text>
-                <Text>LP = Borrow / (HF - 1)</Text>
-              </Stack>
+              <Formula data={{ supplies: formSupply, borrowed: formBorrow }} />
             </Stack>
           </Paper>
         </Grid.Col>

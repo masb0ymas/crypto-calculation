@@ -12,6 +12,7 @@ import {
 } from "@mantine/core";
 import { useLocalStorage } from "@mantine/hooks";
 import { IconApps, IconCoinBitcoin, IconLink } from "@tabler/icons-react";
+import axios, { AxiosRequestConfig } from "axios";
 import _ from "lodash";
 import { useState } from "react";
 import env from "~/config/env";
@@ -62,7 +63,7 @@ export default function HomePage() {
       // @ts-expect-error
       chainETH?.markets,
       "name",
-      "asset",
+      "id",
       (_values, item, _index) => {
         return `${_.toUpper(item.asset)} - ${item.name}`;
       }
@@ -70,11 +71,11 @@ export default function HomePage() {
 
     if (!_.isEmpty(marketLists)) {
       const supplyAssets = chainETH?.markets.find(
-        (x) => x.asset === choiceSupplyAsset
+        (x) => x.id === choiceSupplyAsset
       );
 
       const borrowAssets = chainETH?.markets.find(
-        (x) => x.asset === choiceBorrowAsset
+        (x) => x.id === choiceBorrowAsset
       );
 
       supplyLT = Number(supplyAssets?.liquid_threshold);
@@ -85,17 +86,68 @@ export default function HomePage() {
     }
   }
 
-  function addSupplies() {
+  async function addSupplies() {
+    const url = `${env.COINGECKO_API_URL}/coins/${choiceSupplyAsset}`;
+    const options: AxiosRequestConfig<any> = {
+      headers: { "x-cg-api-key": env.COINGECKO_API_KEY },
+    };
+
+    let price = 0;
+    let symbol = choiceSupplyAsset;
+
+    try {
+      const { data } = await axios.get(url, options);
+
+      price = _.get(data, "market_data.current_price.usd", 0);
+      symbol = _.get(data, "symbol");
+
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+
     formSupply.push({
       defi: String(choiceDeFi),
       market: String(choiceChain),
-      asset: String(choiceSupplyAsset),
+      asset: String(symbol),
       liquid_threshold: supplyLT,
-      price: 0,
+      price,
       amount: Number(amountSupply),
     });
 
     setFormSupply(formSupply);
+  }
+
+  async function addBorrowed() {
+    const url = `${env.COINGECKO_API_URL}/coins/${choiceBorrowAsset}`;
+    const options: AxiosRequestConfig<any> = {
+      headers: { "x-cg-api-key": env.COINGECKO_API_KEY },
+    };
+
+    let price = 0;
+    let symbol = choiceBorrowAsset;
+
+    try {
+      const { data } = await axios.get(url, options);
+
+      price = _.get(data, "market_data.current_price.usd", 0);
+      symbol = _.get(data, "symbol");
+
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+
+    formBorrow.push({
+      defi: String(choiceDeFi),
+      market: String(choiceChain),
+      asset: String(symbol),
+      liquid_threshold: borrowLT,
+      price,
+      amount: Number(amountBorrow),
+    });
+
+    setFormBorrow(formBorrow);
   }
 
   return (
@@ -236,7 +288,8 @@ export default function HomePage() {
                     <NumberInput
                       label="Liquid Threshold"
                       readOnly
-                      value={borrowLT}
+                      value={borrowLT * 100}
+                      suffix=" %"
                       thousandSeparator=","
                       allowNegative={false}
                     />
@@ -249,10 +302,18 @@ export default function HomePage() {
                   thousandSeparator=","
                   allowNegative={false}
                   placeholder="Input asset amount"
+                  onChange={setAmountBorrow}
                   disabled={!choiceBorrowAsset}
                 />
 
-                <Button radius="md" size="sm" variant="light" fullWidth>
+                <Button
+                  radius="md"
+                  size="sm"
+                  variant="light"
+                  fullWidth
+                  disabled={validateNumber(amountBorrow) <= 0}
+                  onClick={() => addBorrowed()}
+                >
                   Add Borrow
                 </Button>
               </Stack>

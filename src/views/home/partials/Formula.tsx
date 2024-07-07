@@ -1,9 +1,10 @@
 import { Divider, Group, Stack, Text, Title } from "@mantine/core";
 import { roundDecimal, validateNumber } from "~/core/utils/number";
+import { defaultForm } from "./TableAsset";
 
 interface FormulaEntity {
-  supplies: any[];
-  borrowed: any[];
+  supplies: (typeof defaultForm)[];
+  borrowed: (typeof defaultForm)[];
 }
 
 interface FormulaProps {
@@ -29,9 +30,20 @@ export default function Formula(props: FormulaProps) {
     return acc;
   }, 0);
 
-  const health_factor_dirty = (colleteral * 0.85) / total_borrow;
+  // maximum liquid threshold
+  const maxLT = Math.max(...data.supplies.map((x) => x.liquid_threshold));
+
+  console.log({ colleteral, maxLT, total_borrow });
+
+  const health_factor_dirty = (colleteral * maxLT) / total_borrow;
   const health_factor = validateNumber(health_factor_dirty);
   const result_hf = roundDecimal(health_factor);
+
+  const new_colleteral = validateNumber(colleteral);
+  const new_maxLT = validateNumber(maxLT);
+  const new_totalBorrow = validateNumber(total_borrow);
+
+  const formulaText = `HF = (${new_colleteral} * ${new_maxLT}) / ${new_totalBorrow}`;
 
   return (
     <section>
@@ -43,10 +55,7 @@ export default function Formula(props: FormulaProps) {
         <Text>HF = (Colleteral * Liquid Threshold) / Total Borrow</Text>
 
         <Text>
-          {`HF = (${validateNumber(colleteral)} * 0.85) / ${validateNumber(
-            total_borrow
-          )}`}{" "}
-          ={" "}
+          {formulaText} ={" "}
           <Text component="span" fw={600}>
             {result_hf <= 0 ? "?" : <u>{result_hf}</u>}
           </Text>

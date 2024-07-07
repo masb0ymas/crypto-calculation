@@ -5,61 +5,73 @@
       "name": "Ethereum",
       "markets": [
         {
+          "id": "wrapped-steth",
           "asset": "wstEth",
           "name": "Wrapped Liquid Staking ETH 2.0",
           "liquid_threshold": 0.81
         },
         {
+          "id": "ethereum",
           "asset": "eth",
           "name": "Ethereum",
           "liquid_threshold": 0.83
         },
         {
+          "id": "bitcoin",
           "asset": "wbtc",
           "name": "Wrapped BTC",
           "liquid_threshold": 0.78
         },
         {
+          "id": "wrapped-eeth",
           "asset": "weETH",
           "name": "Wrapped eETH",
           "liquid_threshold": 0.75
         },
         {
+          "id": "tether",
           "asset": "usdt",
           "name": "Tether",
           "liquid_threshold": 0.78
         },
         {
+          "id": "usd-coin",
           "asset": "usdc",
           "name": "USD Coin",
           "liquid_threshold": 0.78
         },
         {
+          "id": "rocket-pool-eth",
           "asset": "rETH",
           "name": "Rocket Pool ETH",
           "liquid_threshold": 0.77
         },
         {
+          "id": "chainlink",
           "asset": "link",
           "name": "Chainlink",
           "liquid_threshold": 0.68
         },
         {
+          "id": "dai",
           "asset": "dai",
           "name": "Dai",
           "liquid_threshold": 0.77
         },
         {
+          "id": "aave",
           "asset": "aave",
           "name": "Aave Token",
           "liquid_threshold": 0.73
         },
         {
+          "id": "savings-dai",
           "asset": "sDai",
           "name": "Saving Dai",
           "liquid_threshold": 0.78
         },
         {
+          "id": "coinbase-wrapped-staked-eth",
           "asset": "cbEth",
           "name": "Coinbase ETH",
           "liquid_threshold": 0.77
@@ -71,61 +83,73 @@
       "name": "Arbitrum",
       "markets": [
         {
+          "id": "ethereum",
           "asset": "eth",
           "name": "Ethereum",
           "liquid_threshold": 0.85
         },
         {
+          "id": "weth",
           "asset": "weETH",
           "name": "Wrapped eETH",
           "liquid_threshold": 0.75
         },
         {
+          "id": "usd-coin",
           "asset": "usdc",
           "name": "USD Coin",
           "liquid_threshold": 0.78
         },
         {
+          "id": "bitcoin",
           "asset": "wbtc",
           "name": "Wrapped BTC",
           "liquid_threshold": 0.78
         },
         {
+          "id": "wrapped-steth",
           "asset": "wstEth",
           "name": "Wrapped Liquid Staking ETH 2.0",
           "liquid_threshold": 0.79
         },
         {
+          "id": "tether",
           "asset": "usdt",
           "name": "Tether",
           "liquid_threshold": 0.78
         },
         {
+          "id": "chainlink",
           "asset": "link",
           "name": "Chainlink",
           "liquid_threshold": 0.775
         },
         {
+          "id": "arbitrum",
           "asset": "arb",
           "name": "Arbitrum",
           "liquid_threshold": 0.63
         },
         {
+          "id": "usd-coin-ethereum-bridged",
           "asset": "usdc.e",
           "name": "Bridged USDC",
           "liquid_threshold": 0.78
         },
         {
+          "id": "dai",
           "asset": "dai",
           "name": "Dai",
           "liquid_threshold": 0.77
         },
         {
+          "id": "rocket-pool-eth",
           "asset": "rETH",
           "name": "Rocket Pool ETH",
           "liquid_threshold": 0.74
         },
         {
+          "id": "aave",
           "asset": "aave",
           "name": "Aave Token",
           "liquid_threshold": 0.65

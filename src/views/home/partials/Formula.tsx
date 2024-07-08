@@ -1,6 +1,9 @@
-import { Divider, Group, Stack, Text, Title } from "@mantine/core";
+"use-client";
+
+import { Divider, Group, Space, Stack, Text, Title } from "@mantine/core";
 import { roundDecimal, validateNumber } from "~/core/utils/number";
 import { defaultForm } from "./TableAsset";
+import React from "react";
 
 interface FormulaEntity {
   supplies: (typeof defaultForm)[];
@@ -46,7 +49,7 @@ export default function Formula(props: FormulaProps) {
   const formulaText = `HF = (${new_colleteral} * ${new_maxLT}) / ${new_totalBorrow}`;
 
   return (
-    <section>
+    <>
       <Stack gap={5} mt={20}>
         <Title order={5}>
           <u>Formula:</u>
@@ -73,8 +76,30 @@ export default function Formula(props: FormulaProps) {
 
       <Stack gap={5} mt={30}>
         <Text fw={600}>Aset Liquidation Price (LP):</Text>
-        <Text>LP = Borrow / (HF - 1)</Text>
+        <Text>LP = Token Price / Health Factor</Text>
+
+        {data.supplies.map((item) => {
+          const price = validateNumber(item.price);
+          const lp = price / result_hf;
+
+          return (
+            <React.Fragment key={item.asset}>
+              <Divider variant="dashed" mt={20} />
+
+              <Text>{`LP = ${item.price} / ${result_hf}`}</Text>
+              <Text>{`LP = ${lp} / ${item.asset}`}</Text>
+
+              <Space my={10} />
+              <Text>
+                {`Your assets are liquid when the price of ${item.asset} is `}
+                <Text fw={600} component="span">
+                  <u>{`$${lp}`}</u>
+                </Text>
+              </Text>
+            </React.Fragment>
+          );
+        })}
       </Stack>
-    </section>
+    </>
   );
 }

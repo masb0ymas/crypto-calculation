@@ -331,10 +331,6 @@ export default function HomePage() {
               <TableAsset label="Supplies" data={formSupply} />
               <TableAsset label="Borrowed" data={formBorrow} />
 
-              <Button radius="md" size="sm" fullWidth disabled>
-                Calculate
-              </Button>
-
               <Formula data={{ supplies: formSupply, borrowed: formBorrow }} />
             </Stack>
           </Paper>

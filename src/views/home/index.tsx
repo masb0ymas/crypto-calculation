@@ -1,7 +1,11 @@
+"use-client";
+
 import {
+  ActionIcon,
   Button,
   Divider,
   Grid,
+  Group,
   NumberInput,
   Paper,
   Select,
@@ -9,9 +13,14 @@ import {
   Stack,
   Text,
   Title,
+  Tooltip,
 } from "@mantine/core";
-import { useLocalStorage } from "@mantine/hooks";
-import { IconApps, IconCoinBitcoin, IconLink } from "@tabler/icons-react";
+import {
+  IconApps,
+  IconCoinBitcoin,
+  IconLink,
+  IconReload,
+} from "@tabler/icons-react";
 import axios, { AxiosRequestConfig } from "axios";
 import _ from "lodash";
 import { useState } from "react";
@@ -20,8 +29,10 @@ import { optDeFiPlatform } from "~/core/constants/defi";
 import List from "~/core/utils/list";
 import { validateNumber } from "~/core/utils/number";
 import aaveJson from "~/data/json/aave.json";
+import { useLendingStore } from "~/data/state";
 import Formula from "./partials/Formula";
-import TableAsset, { defaultForm } from "./partials/TableAsset";
+import TableAsset from "./partials/TableAsset";
+import { baseTransition } from "~/core/constants/base_setting";
 
 export default function HomePage() {
   const [choiceDeFi, setChoiceDeFi] = useState<string | null>("");
@@ -32,20 +43,13 @@ export default function HomePage() {
   const [amountSupply, setAmountSupply] = useState<string | number>("");
   const [amountBorrow, setAmountBorrow] = useState<string | number>("");
 
-  const keyStorageSupply = `${env.APP_PREFIX}_supply`;
-  const keyStorageBorrow = `${env.APP_PREFIX}_borrow`;
+  let supplies = useLendingStore.getState().supplies;
+  const updateSupplies = useLendingStore((state) => state.addSupply);
+  const removeSupplies = useLendingStore((state) => state.removeSupply);
 
-  // save to local storage
-  const [formSupply, setFormSupply] = useLocalStorage<(typeof defaultForm)[]>({
-    key: keyStorageSupply,
-    defaultValue: [],
-  });
-
-  // save to local storage
-  const [formBorrow, setFormBorrow] = useLocalStorage<(typeof defaultForm)[]>({
-    key: keyStorageBorrow,
-    defaultValue: [],
-  });
+  let borrowed = useLendingStore.getState().borrowed;
+  const updateBorrowed = useLendingStore((state) => state.addBorrow);
+  const removeBorrowed = useLendingStore((state) => state.removeBorrow);
 
   let chainLists: any[] = [];
   let marketLists: any[] = [];
@@ -106,7 +110,7 @@ export default function HomePage() {
       console.log(error);
     }
 
-    formSupply.push({
+    updateSupplies({
       defi: String(choiceDeFi),
       market: String(choiceChain),
       asset: String(symbol),
@@ -114,8 +118,6 @@ export default function HomePage() {
       price,
       amount: Number(amountSupply),
     });
-
-    setFormSupply(formSupply);
   }
 
   async function addBorrowed() {
@@ -138,7 +140,7 @@ export default function HomePage() {
       console.log(error);
     }
 
-    formBorrow.push({
+    updateBorrowed({
       defi: String(choiceDeFi),
       market: String(choiceChain),
       asset: String(symbol),
@@ -146,8 +148,6 @@ export default function HomePage() {
       price,
       amount: Number(amountBorrow),
     });
-
-    setFormBorrow(formBorrow);
   }
 
   return (
@@ -324,14 +324,25 @@ export default function HomePage() {
         <Grid.Col span={{ base: 24, xs: 24, sm: 12, md: 12 }}>
           <Paper p={20} radius="md" shadow="md" withBorder>
             <Stack>
-              <Title order={5}>
-                <u>Result:</u>
-              </Title>
+              <Group justify="space-between">
+                <Title order={5}>
+                  <u>Result:</u>
+                </Title>
 
-              <TableAsset label="Supplies" data={formSupply} />
-              <TableAsset label="Borrowed" data={formBorrow} />
+                <Tooltip label="Reset" transitionProps={baseTransition}>
+                  <ActionIcon variant="subtle" radius="md" onClick={() => {
+                    removeSupplies()
+                    removeBorrowed()
+                  }}>
+                    <IconReload />
+                  </ActionIcon>
+                </Tooltip>
+              </Group>
 
-              <Formula data={{ supplies: formSupply, borrowed: formBorrow }} />
+              <TableAsset label="Supplies" data={supplies} />
+              <TableAsset label="Borrowed" data={borrowed} />
+
+              <Formula data={{ supplies: supplies, borrowed: borrowed }} />
             </Stack>
           </Paper>
         </Grid.Col>

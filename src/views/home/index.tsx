@@ -43,11 +43,13 @@ export default function HomePage() {
   const [amountSupply, setAmountSupply] = useState<string | number>("");
   const [amountBorrow, setAmountBorrow] = useState<string | number>("");
 
-  let supplies = useLendingStore.getState().supplies;
+  let { supplies, borrowed } = useLendingStore();
+
+  // supply actions
   const updateSupplies = useLendingStore((state) => state.addSupply);
   const removeSupplies = useLendingStore((state) => state.removeSupply);
 
-  let borrowed = useLendingStore.getState().borrowed;
+  // borrow actions
   const updateBorrowed = useLendingStore((state) => state.addBorrow);
   const removeBorrowed = useLendingStore((state) => state.removeBorrow);
 
@@ -330,10 +332,14 @@ export default function HomePage() {
                 </Title>
 
                 <Tooltip label="Reset" transitionProps={baseTransition}>
-                  <ActionIcon variant="subtle" radius="md" onClick={() => {
-                    removeSupplies()
-                    removeBorrowed()
-                  }}>
+                  <ActionIcon
+                    variant="subtle"
+                    radius="md"
+                    onClick={() => {
+                      removeSupplies();
+                      removeBorrowed();
+                    }}
+                  >
                     <IconReload />
                   </ActionIcon>
                 </Tooltip>

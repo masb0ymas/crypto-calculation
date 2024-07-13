@@ -1,7 +1,6 @@
 "use-client";
 
 import {
-  ActionIcon,
   Button,
   Divider,
   Grid,
@@ -15,6 +14,7 @@ import {
   Title,
   Tooltip,
 } from "@mantine/core";
+import { useViewportSize } from "@mantine/hooks";
 import {
   IconApps,
   IconCoinBitcoin,
@@ -25,6 +25,7 @@ import axios, { AxiosRequestConfig } from "axios";
 import _ from "lodash";
 import { useState } from "react";
 import env from "~/config/env";
+import { baseTransition } from "~/core/constants/base_setting";
 import { optDeFiPlatform } from "~/core/constants/defi";
 import List from "~/core/utils/list";
 import { validateNumber } from "~/core/utils/number";
@@ -32,9 +33,11 @@ import aaveJson from "~/data/json/aave.json";
 import { useLendingStore } from "~/data/state";
 import Formula from "./partials/Formula";
 import TableAsset from "./partials/TableAsset";
-import { baseTransition } from "~/core/constants/base_setting";
 
 export default function HomePage() {
+  const defaultMobileSize = 480;
+  const { width } = useViewportSize();
+
   const [choiceDeFi, setChoiceDeFi] = useState<string | null>("");
   const [choiceChain, setChoiceChain] = useState<string | null>("");
   const [choiceSupplyAsset, setChoiceSupplyAsset] = useState<string | null>("");
@@ -152,6 +155,12 @@ export default function HomePage() {
     });
   }
 
+  let text_lt = "Liquid Threshold";
+
+  if (width < defaultMobileSize) {
+    text_lt = "LT";
+  }
+
   return (
     <Stack>
       <div style={{ textAlign: "center", alignItems: "center" }}>
@@ -185,6 +194,7 @@ export default function HomePage() {
                   data={chainLists}
                   value={choiceChain}
                   onChange={setChoiceChain}
+                  disabled={_.isNil(choiceDeFi) || _.isEmpty(choiceDeFi)}
                   leftSection={<IconLink size={20} stroke={1.5} />}
                   checkIconPosition="right"
                   placeholder="Choice Market"
@@ -199,6 +209,7 @@ export default function HomePage() {
                     data={marketLists}
                     value={choiceSupplyAsset}
                     onChange={setChoiceSupplyAsset}
+                    disabled={_.isNil(choiceChain) || _.isEmpty(choiceChain)}
                     leftSection={<IconCoinBitcoin size={20} stroke={1.5} />}
                     checkIconPosition="right"
                     placeholder="Choice Asset"
@@ -208,7 +219,7 @@ export default function HomePage() {
 
                 <Grid.Col span={4}>
                   <NumberInput
-                    label="Liquid Threshold"
+                    label={text_lt}
                     readOnly
                     value={supplyLT * 100}
                     suffix=" %"
@@ -266,6 +277,7 @@ export default function HomePage() {
                   data={chainLists}
                   value={choiceChain}
                   onChange={setChoiceChain}
+                  disabled={_.isNil(choiceDeFi) || _.isEmpty(choiceDeFi)}
                   leftSection={<IconLink size={20} stroke={1.5} />}
                   checkIconPosition="right"
                   placeholder="Choice Market"
@@ -280,6 +292,7 @@ export default function HomePage() {
                     data={marketLists}
                     value={choiceBorrowAsset}
                     onChange={setChoiceBorrowAsset}
+                    disabled={_.isNil(choiceChain) || _.isEmpty(choiceChain)}
                     leftSection={<IconCoinBitcoin size={20} stroke={1.5} />}
                     checkIconPosition="right"
                     placeholder="Choice Asset"
@@ -289,7 +302,7 @@ export default function HomePage() {
 
                 <Grid.Col span={4}>
                   <NumberInput
-                    label="Liquid Threshold"
+                    label={text_lt}
                     readOnly
                     value={borrowLT * 100}
                     suffix=" %"

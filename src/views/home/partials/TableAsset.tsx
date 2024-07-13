@@ -1,7 +1,14 @@
-import { Divider, Grid, SimpleGrid, Space, Stack, Text } from "@mantine/core";
-import { useLocalStorage } from "@mantine/hooks";
+import {
+  Divider,
+  Grid,
+  NumberFormatter,
+  SimpleGrid,
+  Space,
+  Stack,
+  Text,
+} from "@mantine/core";
+import { useViewportSize } from "@mantine/hooks";
 import _ from "lodash";
-import env from "~/config/env";
 import EmptyRecord from "~/core/components/Empty/EmptyRecord";
 
 interface RowTableAssetProps {
@@ -35,7 +42,7 @@ export const defaultForm = {
 function RowTableAsset(props: RowTableAssetProps) {
   const { asset, amount, price, liquid_threshold } = props;
 
-  const value = Number(price) * Number(amount);
+  const usd_value = Number(price) * Number(amount);
 
   return (
     <>
@@ -55,7 +62,14 @@ function RowTableAsset(props: RowTableAssetProps) {
       </Grid.Col>
 
       <Grid.Col span={3} style={{ textAlign: "right" }}>
-        <Text fw={500}>{`$${value}`}</Text>
+        <Text component="span" fw={500}>
+          <NumberFormatter
+            prefix="$"
+            value={usd_value}
+            thousandSeparator
+            decimalScale={4}
+          />
+        </Text>
       </Grid.Col>
     </>
   );
@@ -69,7 +83,8 @@ function RowTableAsset(props: RowTableAssetProps) {
 export default function TableAsset(props: TableAssetProps) {
   const { label, data } = props;
 
-  console.log({ data });
+  const defaultMobileSize = 480;
+  const { width } = useViewportSize();
 
   function renderAsset() {
     if (!_.isEmpty(data)) {
@@ -89,6 +104,12 @@ export default function TableAsset(props: TableAssetProps) {
     );
   }
 
+  let text_lt = "Liquid Threshold";
+
+  if (width < defaultMobileSize) {
+    text_lt = "LT";
+  }
+
   return (
     <Stack gap={10}>
       <SimpleGrid cols={4}>
@@ -101,7 +122,7 @@ export default function TableAsset(props: TableAssetProps) {
         </Text>
 
         <Text fw={400} size="sm" c="dimmed" style={{ textAlign: "center" }}>
-          Liquid Threshold
+          {text_lt}
         </Text>
 
         <Text fw={400} size="sm" c="dimmed" style={{ textAlign: "right" }}>

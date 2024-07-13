@@ -3,7 +3,7 @@ import { ColorSchemeScript } from "@mantine/core";
 
 export default function Document() {
   return (
-    <Html lang="en">
+    <Html lang="en" style={{ backgroundColor: `var(--mantine-color-gray-1)` }}>
       <Head>
         <link
           rel="preconnect"

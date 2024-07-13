@@ -21,7 +21,7 @@ export default function RootContainer(props: IProps) {
 
   return (
     <RootContext.Provider value={{ stateLayoutLoading }}>
-      <div>
+      <div style={{ backgroundColor: `var(--mantine-color-gray-1)` }}>
         <Header />
 
         <Container size="md" py={20}>

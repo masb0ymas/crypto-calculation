@@ -33,24 +33,28 @@ export const defaultForm = {
  * @returns
  */
 function RowTableAsset(props: RowTableAssetProps) {
-  const { asset, amount, price } = props;
+  const { asset, amount, price, liquid_threshold } = props;
 
   const value = Number(price) * Number(amount);
 
   return (
     <>
-      <Grid.Col span={4} style={{ textAlign: "left" }}>
+      <Grid.Col span={3} style={{ textAlign: "left" }}>
         <Stack gap={0}>
           <Text fw={500}>{amount}</Text>
           <Text fw={500}>{asset}</Text>
         </Stack>
       </Grid.Col>
 
-      <Grid.Col span={4} style={{ textAlign: "center" }}>
+      <Grid.Col span={3} style={{ textAlign: "center" }}>
         <Text fw={500}>{`$${price}`}</Text>
       </Grid.Col>
 
-      <Grid.Col span={4} style={{ textAlign: "right" }}>
+      <Grid.Col span={3} style={{ textAlign: "center" }}>
+        <Text fw={500}>{`${liquid_threshold * 100}%`}</Text>
+      </Grid.Col>
+
+      <Grid.Col span={3} style={{ textAlign: "right" }}>
         <Text fw={500}>{`$${value}`}</Text>
       </Grid.Col>
     </>
@@ -87,13 +91,17 @@ export default function TableAsset(props: TableAssetProps) {
 
   return (
     <Stack gap={10}>
-      <SimpleGrid cols={3}>
+      <SimpleGrid cols={4}>
         <Text fw={400} size="sm" c="dimmed" style={{ textAlign: "left" }}>
           {label}
         </Text>
 
         <Text fw={400} size="sm" c="dimmed" style={{ textAlign: "center" }}>
           Price
+        </Text>
+
+        <Text fw={400} size="sm" c="dimmed" style={{ textAlign: "center" }}>
+          Liquid Threshold
         </Text>
 
         <Text fw={400} size="sm" c="dimmed" style={{ textAlign: "right" }}>

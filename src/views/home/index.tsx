@@ -163,167 +163,167 @@ export default function HomePage() {
 
       <Grid columns={24} mt={20}>
         <Grid.Col span={{ base: 24, xs: 24, sm: 12, md: 12 }}>
-          <Stack>
-            <Paper p={20} radius="md" shadow="md" withBorder>
-              <Stack gap={10}>
-                <Title order={5}>Supply</Title>
+          <Paper p={20} radius="md" shadow="md" withBorder>
+            <Stack gap={10}>
+              <Title order={5}>Supply</Title>
 
-                <Divider variant="dashed" my={10} />
+              <Divider variant="dashed" />
 
-                <SimpleGrid cols={2}>
-                  <Select
-                    label="DeFi Platform"
-                    data={optDeFiPlatform}
-                    value={choiceDeFi}
-                    onChange={setChoiceDeFi}
-                    leftSection={<IconApps size={20} stroke={1.5} />}
-                    checkIconPosition="right"
-                    placeholder="Choice DeFi"
-                    nothingFoundMessage="Nothing found..."
-                  />
-                  <Select
-                    label="Market/Chain"
-                    data={chainLists}
-                    value={choiceChain}
-                    onChange={setChoiceChain}
-                    leftSection={<IconLink size={20} stroke={1.5} />}
-                    checkIconPosition="right"
-                    placeholder="Choice Market"
-                    nothingFoundMessage="Nothing found..."
-                  />
-                </SimpleGrid>
-
-                <Grid mt={5}>
-                  <Grid.Col span={8}>
-                    <Select
-                      label="Asset"
-                      data={marketLists}
-                      value={choiceSupplyAsset}
-                      onChange={setChoiceSupplyAsset}
-                      leftSection={<IconCoinBitcoin size={20} stroke={1.5} />}
-                      checkIconPosition="right"
-                      placeholder="Choice Asset"
-                      nothingFoundMessage="Nothing found..."
-                    />
-                  </Grid.Col>
-
-                  <Grid.Col span={4}>
-                    <NumberInput
-                      label="Liquid Threshold"
-                      readOnly
-                      value={supplyLT * 100}
-                      suffix=" %"
-                      thousandSeparator=","
-                      allowNegative={false}
-                    />
-                  </Grid.Col>
-                </Grid>
-
-                <NumberInput
-                  label="Amount"
-                  suffix={` ${supplyToken}`}
-                  thousandSeparator=","
-                  allowNegative={false}
-                  placeholder="Input asset amount"
-                  onChange={setAmountSupply}
-                  disabled={!choiceSupplyAsset}
+              <SimpleGrid cols={2}>
+                <Select
+                  label="DeFi Platform"
+                  data={optDeFiPlatform}
+                  value={choiceDeFi}
+                  onChange={setChoiceDeFi}
+                  leftSection={<IconApps size={20} stroke={1.5} />}
+                  checkIconPosition="right"
+                  placeholder="Choice DeFi"
+                  nothingFoundMessage="Nothing found..."
                 />
-
-                <Button
-                  radius="md"
-                  size="sm"
-                  variant="light"
-                  fullWidth
-                  type="button"
-                  disabled={validateNumber(amountSupply) <= 0}
-                  onClick={() => addSupplies()}
-                >
-                  Add Supply
-                </Button>
-              </Stack>
-            </Paper>
-
-            <Paper p={20} radius="md" shadow="md" withBorder>
-              <Stack gap={10}>
-                <Title order={5}>Borrow</Title>
-
-                <Divider variant="dashed" />
-
-                <SimpleGrid cols={2}>
-                  <Select
-                    label="DeFi Platform"
-                    data={optDeFiPlatform}
-                    value={choiceDeFi}
-                    onChange={setChoiceDeFi}
-                    leftSection={<IconApps size={20} stroke={1.5} />}
-                    checkIconPosition="right"
-                    placeholder="Choice DeFi"
-                    nothingFoundMessage="Nothing found..."
-                  />
-                  <Select
-                    label="Marktet/Chain"
-                    data={chainLists}
-                    value={choiceChain}
-                    onChange={setChoiceChain}
-                    leftSection={<IconLink size={20} stroke={1.5} />}
-                    checkIconPosition="right"
-                    placeholder="Choice Market"
-                    nothingFoundMessage="Nothing found..."
-                  />
-                </SimpleGrid>
-
-                <Grid>
-                  <Grid.Col span={8}>
-                    <Select
-                      label="Asset"
-                      data={marketLists}
-                      value={choiceBorrowAsset}
-                      onChange={setChoiceBorrowAsset}
-                      leftSection={<IconCoinBitcoin size={20} stroke={1.5} />}
-                      checkIconPosition="right"
-                      placeholder="Choice Asset"
-                      nothingFoundMessage="Nothing found..."
-                    />
-                  </Grid.Col>
-
-                  <Grid.Col span={4}>
-                    <NumberInput
-                      label="Liquid Threshold"
-                      readOnly
-                      value={borrowLT * 100}
-                      suffix=" %"
-                      thousandSeparator=","
-                      allowNegative={false}
-                    />
-                  </Grid.Col>
-                </Grid>
-
-                <NumberInput
-                  label="Amount"
-                  suffix={` ${borrowToken}`}
-                  thousandSeparator=","
-                  allowNegative={false}
-                  placeholder="Input asset amount"
-                  onChange={setAmountBorrow}
-                  disabled={!choiceBorrowAsset}
+                <Select
+                  label="Market/Chain"
+                  data={chainLists}
+                  value={choiceChain}
+                  onChange={setChoiceChain}
+                  leftSection={<IconLink size={20} stroke={1.5} />}
+                  checkIconPosition="right"
+                  placeholder="Choice Market"
+                  nothingFoundMessage="Nothing found..."
                 />
+              </SimpleGrid>
 
-                <Button
-                  radius="md"
-                  size="sm"
-                  variant="light"
-                  fullWidth
-                  disabled={validateNumber(amountBorrow) <= 0}
-                  onClick={() => addBorrowed()}
-                >
-                  Add Borrow
-                </Button>
-              </Stack>
-            </Paper>
-          </Stack>
+              <Grid>
+                <Grid.Col span={8}>
+                  <Select
+                    label="Asset"
+                    data={marketLists}
+                    value={choiceSupplyAsset}
+                    onChange={setChoiceSupplyAsset}
+                    leftSection={<IconCoinBitcoin size={20} stroke={1.5} />}
+                    checkIconPosition="right"
+                    placeholder="Choice Asset"
+                    nothingFoundMessage="Nothing found..."
+                  />
+                </Grid.Col>
+
+                <Grid.Col span={4}>
+                  <NumberInput
+                    label="Liquid Threshold"
+                    readOnly
+                    value={supplyLT * 100}
+                    suffix=" %"
+                    thousandSeparator=","
+                    allowNegative={false}
+                  />
+                </Grid.Col>
+              </Grid>
+
+              <NumberInput
+                label="Amount"
+                suffix={` ${supplyToken}`}
+                thousandSeparator=","
+                allowNegative={false}
+                placeholder="Input asset amount"
+                onChange={setAmountSupply}
+                disabled={!choiceSupplyAsset}
+              />
+
+              <Button
+                radius="md"
+                size="sm"
+                variant="light"
+                fullWidth
+                type="button"
+                disabled={validateNumber(amountSupply) <= 0}
+                onClick={() => addSupplies()}
+              >
+                Add Supply
+              </Button>
+            </Stack>
+          </Paper>
         </Grid.Col>
 
         <Grid.Col span={{ base: 24, xs: 24, sm: 12, md: 12 }}>
+          <Paper p={20} radius="md" shadow="md" withBorder>
+            <Stack gap={10}>
+              <Title order={5}>Borrow</Title>
+
+              <Divider variant="dashed" />
+
+              <SimpleGrid cols={2}>
+                <Select
+                  label="DeFi Platform"
+                  data={optDeFiPlatform}
+                  value={choiceDeFi}
+                  onChange={setChoiceDeFi}
+                  leftSection={<IconApps size={20} stroke={1.5} />}
+                  checkIconPosition="right"
+                  placeholder="Choice DeFi"
+                  nothingFoundMessage="Nothing found..."
+                />
+                <Select
+                  label="Marktet/Chain"
+                  data={chainLists}
+                  value={choiceChain}
+                  onChange={setChoiceChain}
+                  leftSection={<IconLink size={20} stroke={1.5} />}
+                  checkIconPosition="right"
+                  placeholder="Choice Market"
+                  nothingFoundMessage="Nothing found..."
+                />
+              </SimpleGrid>
+
+              <Grid>
+                <Grid.Col span={8}>
+                  <Select
+                    label="Asset"
+                    data={marketLists}
+                    value={choiceBorrowAsset}
+                    onChange={setChoiceBorrowAsset}
+                    leftSection={<IconCoinBitcoin size={20} stroke={1.5} />}
+                    checkIconPosition="right"
+                    placeholder="Choice Asset"
+                    nothingFoundMessage="Nothing found..."
+                  />
+                </Grid.Col>
+
+                <Grid.Col span={4}>
+                  <NumberInput
+                    label="Liquid Threshold"
+                    readOnly
+                    value={borrowLT * 100}
+                    suffix=" %"
+                    thousandSeparator=","
+                    allowNegative={false}
+                  />
+                </Grid.Col>
+              </Grid>
+
+              <NumberInput
+                label="Amount"
+                suffix={` ${borrowToken}`}
+                thousandSeparator=","
+                allowNegative={false}
+                placeholder="Input asset amount"
+                onChange={setAmountBorrow}
+                disabled={!choiceBorrowAsset}
+              />
+
+              <Button
+                radius="md"
+                size="sm"
+                variant="light"
+                fullWidth
+                disabled={validateNumber(amountBorrow) <= 0}
+                onClick={() => addBorrowed()}
+              >
+                Add Borrow
+              </Button>
+            </Stack>
+          </Paper>
+        </Grid.Col>
+
+        <Grid.Col span={{ base: 24 }}>
           <Paper p={20} radius="md" shadow="md" withBorder>
             <Stack>
               <Group justify="space-between">
@@ -331,26 +331,30 @@ export default function HomePage() {
                   <u>Result:</u>
                 </Title>
 
-                <Tooltip label="Reset" transitionProps={baseTransition}>
-                  <ActionIcon
-                    variant="subtle"
+                <Tooltip label="Reset Lending" transitionProps={baseTransition}>
+                  <Button
+                    leftSection={<IconReload size={18} />}
+                    variant="light"
                     radius="md"
+                    size="compact-sm"
                     onClick={() => {
                       removeSupplies();
                       removeBorrowed();
                     }}
                   >
-                    <IconReload />
-                  </ActionIcon>
+                    Reset
+                  </Button>
                 </Tooltip>
               </Group>
 
               <TableAsset label="Supplies" data={supplies} />
               <TableAsset label="Borrowed" data={borrowed} />
-
-              <Formula data={{ supplies: supplies, borrowed: borrowed }} />
             </Stack>
           </Paper>
+        </Grid.Col>
+
+        <Grid.Col span={{ base: 24 }}>
+          <Formula data={{ supplies: supplies, borrowed: borrowed }} />
         </Grid.Col>
       </Grid>
     </Stack>

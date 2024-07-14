@@ -20,6 +20,7 @@ import {
   IconCoinBitcoin,
   IconLink,
   IconReload,
+  IconX,
 } from "@tabler/icons-react";
 import axios, { AxiosRequestConfig } from "axios";
 import _ from "lodash";
@@ -33,6 +34,7 @@ import aaveJson from "~/data/json/aave.json";
 import { useLendingStore } from "~/data/state";
 import Formula from "./partials/Formula";
 import TableAsset from "./partials/TableAsset";
+import { notifications } from "@mantine/notifications";
 
 export default function HomePage() {
   const defaultMobileSize = 480;
@@ -111,18 +113,27 @@ export default function HomePage() {
       symbol = _.get(data, "symbol");
 
       console.log(data);
+
+      updateSupplies({
+        defi: String(choiceDeFi),
+        market: String(choiceChain),
+        asset: String(symbol),
+        liquid_threshold: supplyLT,
+        price,
+        amount: Number(amountSupply),
+      });
     } catch (error) {
       console.log(error);
-    }
+      const errMessage = _.get(error, "message", "");
 
-    updateSupplies({
-      defi: String(choiceDeFi),
-      market: String(choiceChain),
-      asset: String(symbol),
-      liquid_threshold: supplyLT,
-      price,
-      amount: Number(amountSupply),
-    });
+      notifications.show({
+        title: `Something went wrong!`,
+        message: errMessage,
+        color: "red",
+        withCloseButton: true,
+        icon: <IconX size={16} />,
+      });
+    }
   }
 
   async function addBorrowed() {
@@ -141,18 +152,27 @@ export default function HomePage() {
       symbol = _.get(data, "symbol");
 
       console.log(data);
+
+      updateBorrowed({
+        defi: String(choiceDeFi),
+        market: String(choiceChain),
+        asset: String(symbol),
+        liquid_threshold: borrowLT,
+        price,
+        amount: Number(amountBorrow),
+      });
     } catch (error) {
       console.log(error);
-    }
+      const errMessage = _.get(error, "message", "");
 
-    updateBorrowed({
-      defi: String(choiceDeFi),
-      market: String(choiceChain),
-      asset: String(symbol),
-      liquid_threshold: borrowLT,
-      price,
-      amount: Number(amountBorrow),
-    });
+      notifications.show({
+        title: `Something went wrong!`,
+        message: errMessage,
+        color: "red",
+        withCloseButton: true,
+        icon: <IconX size={16} />,
+      });
+    }
   }
 
   let text_lt = "Liquid Threshold";

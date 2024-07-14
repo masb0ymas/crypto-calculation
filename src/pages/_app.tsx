@@ -1,6 +1,7 @@
 import "@mantine/core/styles.css";
 import "@mantine/dates/styles.css";
 import "@mantine/nprogress/styles.css";
+import "@mantine/notifications/styles.css";
 import "dayjs/locale/id";
 
 import { localStorageColorSchemeManager, MantineProvider } from "@mantine/core";
@@ -9,6 +10,7 @@ import { AppProps } from "next/app";
 import Head from "next/head";
 import env from "~/config/env";
 import MyRouterTransition from "~/core/components/MyRouterTransition";
+import { Notifications } from "@mantine/notifications";
 import { theme } from "~/core/styles/theme";
 import siteLayout from "~/layouts";
 
@@ -50,6 +52,7 @@ export default function App(props: AppProps) {
       </Head>
 
       <MyRouterTransition />
+      <Notifications />
 
       <DatesProvider settings={{ locale: "id" }}>
         {/* load root layout */}

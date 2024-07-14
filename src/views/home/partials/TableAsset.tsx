@@ -67,7 +67,7 @@ function RowTableAsset(props: RowTableAssetProps) {
             prefix="$"
             value={usd_value}
             thousandSeparator
-            decimalScale={4}
+            decimalScale={2}
           />
         </Text>
       </Grid.Col>

@@ -200,32 +200,18 @@ export default function Formula(props: FormulaProps) {
             const liquid_threshold = validateNumber(item.liquid_threshold);
 
             const collateral = token_price * token_amount;
-            const new_collateral = validateNumber(intlNumberFormat(collateral));
+            const new_collateral = roundDecimal(collateral);
 
             const ltv = (total_borrow / new_collateral) * liquid_threshold;
-            const new_ltv = validateNumber(intlNumberFormat(ltv));
+            const new_ltv = roundDecimal(ltv);
 
             const increase_in_assets = token_price * new_ltv;
-            const new_ia = validateNumber(intlNumberFormat(increase_in_assets));
+            const new_ia = roundDecimal(increase_in_assets);
 
             const cpo = token_price + new_ia;
-            const new_cpo = validateNumber(intlNumberFormat(cpo))
+            const new_cpo = roundDecimal(new_ia);
 
-            console.log({
-              token_price,
-              token_amount,
-              liquid_threshold,
-              collateral,
-              new_collateral,
-              ltv,
-              new_ltv,
-              increase_in_assets,
-              new_ia,
-              cpo,
-              new_cpo
-            })
-
-            if (total_borrow / new_collateral >= 1) {
+            if (total_borrow / collateral >= 1) {
               return <></>;
             }
 

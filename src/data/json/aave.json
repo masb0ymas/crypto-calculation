@@ -92,7 +92,7 @@
           "id": "weth",
           "asset": "weETH",
           "name": "Wrapped eETH",
-          "liquid_threshold": 0.75
+          "liquid_threshold": 0.85
         },
         {
           "id": "usd-coin",

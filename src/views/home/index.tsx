@@ -31,6 +31,7 @@ import { optDeFiPlatform } from "~/core/constants/defi";
 import List from "~/core/utils/list";
 import { validateNumber } from "~/core/utils/number";
 import aaveJson from "~/data/json/aave.json";
+import kaminoJson from "~/data/json/kamino.json";
 import { useLendingStore } from "~/data/state";
 import Formula from "./partials/Formula";
 import TableAsset from "./partials/TableAsset";
@@ -86,6 +87,38 @@ export default function HomePage() {
       );
 
       const borrowAssets = chainETH?.markets.find(
+        (x) => x.id === choiceBorrowAsset
+      );
+
+      supplyLT = Number(supplyAssets?.liquid_threshold);
+      borrowLT = Number(borrowAssets?.liquid_threshold);
+
+      supplyToken = _.toUpper(String(supplyAssets?.asset));
+      borrowToken = _.toUpper(String(borrowAssets?.asset));
+    }
+  }
+  
+  if (choiceDeFi === "KAMINO") {
+    chainLists = List.transform(kaminoJson.data, "name", "chain");
+
+    const listMarkets = kaminoJson.data.find((x) => x.chain === choiceChain);
+
+    marketLists = List.transform(
+      // @ts-expect-error
+      listMarkets?.markets,
+      "name",
+      "id",
+      (_values, item, _index) => {
+        return `${_.toUpper(item.asset)} - ${item.name}`;
+      }
+    );
+
+    if (!_.isEmpty(marketLists)) {
+      const supplyAssets = listMarkets?.markets.find(
+        (x) => x.id === choiceSupplyAsset
+      );
+
+      const borrowAssets = listMarkets?.markets.find(
         (x) => x.id === choiceBorrowAsset
       );
 

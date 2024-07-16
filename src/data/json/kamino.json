@@ -1,0 +1,82 @@
+{
+  "data": [
+    {
+      "chain": "solana",
+      "name": "Main Market",
+      "markets": [
+        {
+          "id": "solana",
+          "asset": "sol",
+          "name": "Solana",
+          "liquid_threshold": 0.65
+        },
+        {
+          "id": "usd-coin",
+          "asset": "usdc",
+          "name": "USD Coin",
+          "liquid_threshold": 0.80
+        },
+        {
+          "id": "bitcoin",
+          "asset": "wbtc",
+          "name": "Wrapped BTC",
+          "liquid_threshold": 0.60
+        },
+        {
+          "id": "paypal-usd",
+          "asset": "pyusd",
+          "name": "Paypal USD",
+          "liquid_threshold": 0.50
+        },
+        {
+          "id": "jito-staked-sol",
+          "asset": "jitosol",
+          "name": "Jito Staked SOL",
+          "liquid_threshold": 0.45
+        },
+        {
+          "id": "jupiter-staked-sol",
+          "asset": "jupsol",
+          "name": "Jupiter Staked SOL",
+          "liquid_threshold": 0.45
+        },
+        {
+          "id": "blazestake-staked-sol",
+          "asset": "bsol",
+          "name": "BlazeStake Staked SOL",
+          "liquid_threshold": 0.45
+        },
+        {
+          "id": "msol",
+          "asset": "msol",
+          "name": "Marinade Staked SOL",
+          "liquid_threshold": 0.45
+        },
+        {
+          "id": "tether",
+          "asset": "usdt",
+          "name": "Tether",
+          "liquid_threshold": 0.80
+        },
+        {
+          "id": "the-vault-staked-sol",
+          "asset": "vsol",
+          "name": "The Vault Staked Sol",
+          "liquid_threshold": 0.45
+        },
+        {
+          "id": "helius-staked-sol",
+          "asset": "hsol",
+          "name": "Helius Staked Sol",
+          "liquid_threshold": 0.45
+        },
+        {
+          "id": "ethereum",
+          "asset": "eth",
+          "name": "Ethereum",
+          "liquid_threshold": 0.40
+        }
+      ]
+    }
+  ]
+}

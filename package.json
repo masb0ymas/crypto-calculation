@@ -8,7 +8,12 @@
     "start": "next start",
     "lint": "next lint"
   },
-  "keywords": ["DeFi", "NextJs", "MantineUI", "ReactJs"],
+  "keywords": [
+    "DeFi",
+    "NextJs",
+    "MantineUI",
+    "ReactJs"
+  ],
   "author": "masb0ymas <n.fajri@mail.com>",
   "license": "MIT",
   "dependencies": {

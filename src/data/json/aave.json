@@ -79,6 +79,48 @@
       ]
     },
     {
+      "chain": "base",
+      "name": "Base",
+      "markets": [
+        {
+          "id": "ethereum",
+          "asset": "eth",
+          "name": "Ethereum",
+          "liquid_threshold": 0.83
+        },
+        {
+          "id": "weeth",
+          "asset": "weETH",
+          "name": "Wrapped eETH",
+          "liquid_threshold": 0.75
+        },
+        {
+          "id": "usd-coin",
+          "asset": "usdc",
+          "name": "USD Coin",
+          "liquid_threshold": 0.78
+        },
+        {
+          "id": "wrapped-steth",
+          "asset": "wstEth",
+          "name": "Wrapped Liquid Staking ETH 2.0",
+          "liquid_threshold": 0.76
+        },
+        {
+          "id": "coinbase-wrapped-staked-eth",
+          "asset": "cbeth",
+          "name": "Coinbase Wrapped Staked ETH",
+          "liquid_threshold": 0.74
+        },
+        {
+          "id": "bridged-usd-coin-base",
+          "asset": "usdbc",
+          "name": "Bridged USD Coin (Base)",
+          "liquid_threshold": 0.78
+        }
+      ]
+    },
+    {
       "chain": "arb",
       "name": "Arbitrum",
       "markets": [
@@ -89,7 +131,7 @@
           "liquid_threshold": 0.85
         },
         {
-          "id": "weth",
+          "id": "weeth",
           "asset": "weETH",
           "name": "Wrapped eETH",
           "liquid_threshold": 0.85
@@ -153,6 +195,366 @@
           "asset": "aave",
           "name": "Aave Token",
           "liquid_threshold": 0.65
+        }
+      ]
+    },
+    {
+      "chain": "avalance",
+      "name": "Avalance",
+      "markets": [
+        {
+          "id": "bitcoin-avalanche-bridged-btc-b",
+          "asset": "btc.b",
+          "name": "Bitcoin Avalanche Bridged (BTC.b)",
+          "liquid_threshold": 0.75
+        },
+        {
+          "id": "usd-coin",
+          "asset": "usdc",
+          "name": "USD Coin",
+          "liquid_threshold": 0.81
+        },
+        {
+          "id": "wrapped-avax",
+          "asset": "wavax",
+          "name": "Wrapped AVAX",
+          "liquid_threshold": 0.73
+        },
+        {
+          "id": "benqi-liquid-staked-avax",
+          "asset": "savax",
+          "name": "BENQI Liquid Staked AVAX",
+          "liquid_threshold": 0.45
+        },
+        {
+          "id": "tether",
+          "asset": "usdt",
+          "name": "Tether",
+          "liquid_threshold": 0.78
+        },
+        {
+          "id": "ethereum",
+          "asset": "eth",
+          "name": "Ethereum",
+          "liquid_threshold": 0.825
+        },
+        {
+          "id": "dai",
+          "asset": "dai",
+          "name": "Dai",
+          "liquid_threshold": 0.77
+        },
+        {
+          "id": "chainlink",
+          "asset": "link",
+          "name": "Chainlink",
+          "liquid_threshold": 0.71
+        },
+        {
+          "id": "aave",
+          "asset": "aave",
+          "name": "Aave Token",
+          "liquid_threshold": 0.713
+        },
+        {
+          "id": "frax",
+          "asset": "frax",
+          "name": "Frax",
+          "liquid_threshold": 0.77
+        }
+      ]
+    },
+    {
+      "chain": "optimism",
+      "name": "Optimism",
+      "markets": [
+        {
+          "id": "wrapped-steth",
+          "asset": "wstEth",
+          "name": "Wrapped Liquid Staking ETH 2.0",
+          "liquid_threshold": 0.80
+        },
+        {
+          "id": "ethereum",
+          "asset": "eth",
+          "name": "Ethereum",
+          "liquid_threshold": 0.825
+        },
+        {
+          "id": "usd-coin",
+          "asset": "usdc",
+          "name": "USD Coin",
+          "liquid_threshold": 0.78
+        },
+        {
+          "id": "bitcoin",
+          "asset": "wbtc",
+          "name": "Wrapped BTC",
+          "liquid_threshold": 0.78
+        },
+        {
+          "id": "optimism",
+          "asset": "op",
+          "name": "Optimism",
+          "liquid_threshold": 0.63
+        },
+        {
+          "id": "tether",
+          "asset": "usdt",
+          "name": "Tether",
+          "liquid_threshold": 0.78
+        },
+        {
+          "id": "susd-optimism",
+          "asset": "susd",
+          "name": "sUSD (Optimism)",
+          "liquid_threshold": 0.70
+        },
+        {
+          "id": "usd-coin-ethereum-bridged",
+          "asset": "usdc.e",
+          "name": "Bridged USDC",
+          "liquid_threshold": 0.80
+        },
+        {
+          "id": "dai",
+          "asset": "dai",
+          "name": "Dai",
+          "liquid_threshold": 0.77
+        },
+        {
+          "id": "rocket-pool-eth",
+          "asset": "rETH",
+          "name": "Rocket Pool ETH",
+          "liquid_threshold": 0.74
+        },
+        {
+          "id": "chainlink",
+          "asset": "link",
+          "name": "Chainlink",
+          "liquid_threshold": 0.75
+        },
+        {
+          "id": "aave",
+          "asset": "aave",
+          "name": "Aave Token",
+          "liquid_threshold": 0.65
+        }
+      ]
+    },
+    {
+      "chain": "polygon",
+      "name": "Polygon",
+      "markets": [
+        {
+          "id": "bitcoin",
+          "asset": "wbtc",
+          "name": "Wrapped BTC",
+          "liquid_threshold": 0.78
+        },
+        {
+          "id": "ethereum",
+          "asset": "eth",
+          "name": "Ethereum",
+          "liquid_threshold": 0.825
+        },
+        {
+          "id": "tether",
+          "asset": "usdt",
+          "name": "Tether",
+          "liquid_threshold": 0.78
+        },
+        {
+          "id": "stader-maticx",
+          "asset": "maticx",
+          "name": "Liquid Staking Matic (PoS)",
+          "liquid_threshold": 0.60
+        },
+        {
+          "id": "usd-coin",
+          "asset": "usdc",
+          "name": "USD Coin",
+          "liquid_threshold": 0.78
+        },
+        {
+          "id": "usd-coin-ethereum-bridged",
+          "asset": "usdc.e",
+          "name": "Bridged USDC",
+          "liquid_threshold": 0.78
+        },
+        {
+          "id": "wmatic",
+          "asset": "wmatic",
+          "name": "Wrapped Matic",
+          "liquid_threshold": 0.73
+        },
+        {
+          "id": "wrapped-steth",
+          "asset": "wstEth",
+          "name": "Wrapped Liquid Staking ETH 2.0",
+          "liquid_threshold": 0.79
+        },
+        {
+          "id": "dai",
+          "asset": "dai",
+          "name": "Dai",
+          "liquid_threshold": 0.77
+        },
+        {
+          "id": "lido-staked-matic",
+          "asset": "stmatic",
+          "name": "Lido Staked Matic",
+          "liquid_threshold": 0.58
+        },
+        {
+          "id": "aave",
+          "asset": "aave",
+          "name": "Aave Token",
+          "liquid_threshold": 0.70
+        },
+        {
+          "id": "chainlink",
+          "asset": "link",
+          "name": "Chainlink",
+          "liquid_threshold": 0.68
+        }
+      ]
+    },
+    {
+      "chain": "metis",
+      "name": "Metis",
+      "markets": [
+        {
+          "id": "usd-coin",
+          "asset": "usdc",
+          "name": "USD Coin",
+          "liquid_threshold": 0.85
+        },
+        {
+          "id": "tether",
+          "asset": "usdt",
+          "name": "Tether",
+          "liquid_threshold": 0.80
+        },
+        {
+          "id": "ethereum",
+          "asset": "eth",
+          "name": "Ethereum",
+          "liquid_threshold": 0.825
+        },
+        {
+          "id": "dai",
+          "asset": "dai",
+          "name": "Dai",
+          "liquid_threshold": 0.77
+        }
+      ]
+    },
+    {
+      "chain": "gnosis",
+      "name": "Gnosis",
+      "markets": [
+        {
+          "id": "savings-xdai",
+          "asset": "sdai",
+          "name": "Savings xDAI",
+          "liquid_threshold": 0.78
+        },
+        {
+          "id": "wrapped-steth",
+          "asset": "wstEth",
+          "name": "Wrapped Liquid Staking ETH 2.0",
+          "liquid_threshold": 0.78
+        },
+        {
+          "id": "xdai",
+          "asset": "xdai",
+          "name": "XDai",
+          "liquid_threshold": 0.77
+        },
+        {
+          "id": "ethereum",
+          "asset": "eth",
+          "name": "Ethereum",
+          "liquid_threshold": 0.78
+        },
+        {
+          "id": "usd-coin",
+          "asset": "usdc",
+          "name": "USD Coin",
+          "liquid_threshold": 0.78
+        },
+        {
+          "id": "usd-coin-ethereum-bridged",
+          "asset": "usdc.e",
+          "name": "Bridged USDC",
+          "liquid_threshold": 0.78
+        }
+      ]
+    },
+    {
+      "chain": "bnb",
+      "name": "BNB",
+      "markets": [
+        {
+          "id": "bitcoin",
+          "asset": "wbtc",
+          "name": "Wrapped BTC",
+          "liquid_threshold": 0.75
+        },
+        {
+          "id": "tether",
+          "asset": "usdt",
+          "name": "Tether",
+          "liquid_threshold": 0.78
+        },
+        {
+          "id": "ethereum",
+          "asset": "eth",
+          "name": "Ethereum",
+          "liquid_threshold": 0.825
+        },
+        {
+          "id": "binancecoin",
+          "asset": "bnb",
+          "name": "BNB",
+          "liquid_threshold": 0.75
+        },
+        {
+          "id": "first-digital-usd",
+          "asset": "fdusd",
+          "name": "First Digital USD",
+          "liquid_threshold": 0.75
+        },
+        {
+          "id": "usd-coin",
+          "asset": "usdc",
+          "name": "USD Coin",
+          "liquid_threshold": 0.78
+        }
+      ]
+    },
+    {
+      "chain": "scroll",
+      "name": "Scroll",
+      "markets": [
+        {
+          "id": "ethereum",
+          "asset": "eth",
+          "name": "Ethereum",
+          "liquid_threshold": 0.78
+        },
+        {
+          "id": "wrapped-steth",
+          "asset": "wstEth",
+          "name": "Wrapped Liquid Staking ETH 2.0",
+          "liquid_threshold": 0.78
+        },
+        {
+          "id": "usd-coin",
+          "asset": "usdc",
+          "name": "USD Coin",
+          "liquid_threshold": 0.78
         }
       ]
     }

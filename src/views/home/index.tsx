@@ -97,7 +97,7 @@ export default function HomePage() {
       borrowToken = _.toUpper(String(borrowAssets?.asset));
     }
   }
-  
+
   if (choiceDeFi === "KAMINO") {
     chainLists = List.transform(kaminoJson.data, "name", "chain");
 
